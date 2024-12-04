@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VR</title>
+
+    <link rel="stylesheet" href="temple5.css"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <header>
+        <section>
+        <h1 style="  font-size: 65px; text-align: center; color:#8a0004 ; "><b>霞海城隍廟</b></h1>
+        </section>
+    </header>
+
+    <nav>
+        <a href="temple1.html">首頁</a>
+        <a href="temple5.html">VR探索遊戲</a>
+        <a href="temple2.html">月老專區</a>
+        <a href="temple3.html">商店專區</a>
+        <a href="temple4.html">會員中心</a>
+    </nav>
+
+</head>
+<body>
+    <!-- 圖示 -->
+        <span class="material-icons icon" style="font-size: 100px;" id="showDialog">
+            support_agent
+        </span>
+
+    <!-- 對話框 -->
+    <div id="dialog" class="dialog-box" style="display: block;">
+        <span class="material-icons">mark_chat_unread</span>
+        <p>點擊頭像即將為你服務!</p>
+        <button class="close2btn" onclick="closeDialog()">關閉</button>
+    </div>
+
+    <!-- 聊天框 -->
+    <div id="chatBox" class="chat-box" style="display: none;">
+        <div class="chat-header">
+            <span>客服中心</span>
+            <button id="closeChat" class="close3btn">✖️</button>
+        </div>
+        <div class="chat-content" id="chatContent">
+            <!-- 聊天訊息會顯示在這裡 -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="請輸入訊息...(可以隨便打點甚麼)" />
+            <button id="sendBtn">發送</button>
+        </div>
+    </div>
+
+    <script>
+        // 獲取元素
+        const showDialogBtn = document.getElementById("showDialog");
+        const dialogBox = document.getElementById("dialog");
+        const chatBox = document.getElementById("chatBox");
+        const closeChatBtn = document.getElementById("closeChat");
+        const sendBtn = document.getElementById("sendBtn");
+        const userInput = document.getElementById("userInput");
+        const chatContent = document.getElementById("chatContent");
+
+        // 當頁面加載後顯示對話框並定位
+        window.onload = function() {
+            positionDialog();  // 設置對話框位置
+        };
+
+        // 顯示對話框
+        function positionDialog() {
+            const iconRect = showDialogBtn.getBoundingClientRect();
+            const dialog = dialogBox;
+
+            dialog.style.display = 'block';  // 顯示對話框
+       
+
+            // 設定對話框的位置，使其顯示在圖示的右側並垂直居中
+            dialog.style.left = `${iconRect.left + iconRect.width + 10}px`;  // 讓對話框顯示在圖示的右邊
+            dialog.style.top = `${iconRect.top + (iconRect.height / 2) - (dialog.offsetHeight / 2)}px`;  // 讓對話框垂直居中於圖示
+        }
+
+        // 點擊客服圖像時顯示聊天框
+        showDialogBtn.addEventListener("click", () => {
+            chatBox.style.display = "flex";  // 顯示聊天框
+        });
+
+        // 點擊關閉聊天框按鈕時，隱藏聊天框
+        closeChatBtn.addEventListener("click", () => {
+            chatBox.style.display = "none";  // 隱藏聊天框
+        });
+
+        // 發送訊息
+        sendBtn.addEventListener("click", () => {
+            const message = userInput.value.trim();
+            if (message) {
+                // 顯示用戶訊息
+                const userMessage = document.createElement("div");
+                userMessage.classList.add("user-message");
+                userMessage.textContent = message;
+                chatContent.appendChild(userMessage);
+        
+                // 清空輸入框
+                userInput.value = "";
+
+                // 模擬客服回應
+                setTimeout(() => {
+                    const botMessage = document.createElement("div");
+                    botMessage.classList.add("bot-message");
+                    botMessage.textContent = "客服：謝謝您的訊息，我們會盡快處理。";
+                    chatContent.appendChild(botMessage);
+                    chatContent.scrollTop = chatContent.scrollHeight;  // 自動滾動到底部
+                }, 1000);
+            }
+        });
+
+        // 關閉對話框
+        function closeDialog() {
+            dialogBox.style.display = 'none';
+        }
+
+    </script>
+    <div style="background-color: #8a0004; background-image: url(image/VR2.png);background-size: cover,auto ;background-position: center center;background-repeat: no-repeat;min-height: 100vh;display: flex; flex-direction: column;padding: 20px;">
+        <h2 style="color:black;  text-align: center;">專屬VR導覽</h2>
+        <h3 style="color: black;  text-align: center;margin-bottom: 100px;" >
+        歡迎來到月來越奇廟的廟宇VR導覽，一個結合虛擬實境與深厚歷史文化的全新體驗平台。<br>
+        在這裡，您將透過先進的VR技術，親身走進台灣知名的廟宇，無需離開家門，便能深入探索這些神聖空間的獨特魅力。<br>
+        無論是了解神明的起源與傳說，還是親臨熱鬧的廟會現場，甚至體驗拜拜儀式的過程，<br>
+        我們的VR導覽都能帶您一同穿越時空，感受每一個文化細節。<br>
+        您還可以透過互動式的導覽功能，隨時查詢各種廟宇的背景故事，瞭解每一座神像的象徵意義，讓每一個角落的美好都不再錯過。<br>
+        不論您是對台灣廟宇文化充滿好奇，還是希望更深入了解廟宇背後的歷史與信仰，這裡將為您提供一場無與倫比的文化之旅。<br>
+        立即開啟您的虛擬旅程，與我們一起探索這片神聖的土地，感受廟宇與信仰的無限魅力。
+        </h3>
+        <div class="button-container">
+            <button id="openModal2"><h2 style="color: rgb(251, 246, 246);">進入導覽</h2></button>
+
+        </div>
+    </div>
+</body>
+<footer>
+    <div>
+        <p>聯絡我們<br>
+            電話:(02)2558-0346<br>
+            地址:台北市大同區迪化街一段61號<br>
+            服務時間: 每日早上07:00分至晚上07:00時，全年無休。(除公告之颱風、天然災害外)
+           <br>
+            copyright@ 2024 月來越奇廟
+        </p> 
+    </div>
+</footer>
+</html>

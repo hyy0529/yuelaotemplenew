@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首頁</title>
+    <link rel="stylesheet" href="temple.css"> 
+    
+    
+    <header>
+        <section>
+        <h1 style="  font-size: 65px; text-align: center; color:#8a0004 ; "><b>霞海城隍廟</b></h1>
+        </section>
+    </header>
+
+    <nav>
+        <a href="temple1.html">首頁</a>
+        <a href="temple5.html">VR探索遊戲</a>
+        <a href="temple2.html">月老專區</a>
+        <a href="temple3.html">商店專區</a>
+        <a href="temple4.html">會員中心</a>
+    </nav>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- 圖示 -->
+<span class="material-icons icon" style="font-size: 100px;" id="showDialog">
+    support_agent
+</span>
+    <!-- 對話框 -->
+<div id="dialog" class="dialog-box" style="display: none;">
+    <span class="material-icons">mark_chat_unread</span>
+    <p>點擊頭像即將為你服務!</p>
+    <button class="close2btn" onclick="closeDialog()">關閉</button>
+</div>
+
+    <!-- 聊天框 -->
+<div id="chatBox" class="chat-box" style="display: none;">
+    <div class="chat-header">
+        <span>客服中心</span>
+        <button id="closeChat" class="close3btn">✖️</button>
+    </div>
+    <div class="chat-content" id="chatContent">
+        <!-- 聊天訊息會顯示在這裡 -->
+    </div>
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="請輸入訊息... (可以隨便打點甚麼)" />
+        <button id="sendBtn">發送</button>
+    </div>
+</div>
+
+
+<script>
+    // 獲取元素
+    const showDialogBtn = document.getElementById("showDialog");
+    const dialogBox = document.getElementById("dialog");
+    const chatBox = document.getElementById("chatBox");
+    const closeChatBtn = document.getElementById("closeChat");
+    const sendBtn = document.getElementById("sendBtn");
+    const userInput = document.getElementById("userInput");
+    const chatContent = document.getElementById("chatContent");
+
+    // 當頁面加載後顯示對話框並定位
+    window.onload = function() {
+        positionDialog();  // 設置對話框位置
+    };
+
+    // 顯示對話框
+    function positionDialog() {
+        const iconRect = showDialogBtn.getBoundingClientRect();
+        const dialog = dialogBox;
+        dialog.style.display = 'block';  // 顯示對話框
+
+        // 設定對話框的位置，使其顯示在圖示的右側並垂直居中
+        dialog.style.left = `${iconRect.left + iconRect.width + 10}px`;  // 讓對話框顯示在圖示的右邊
+        dialog.style.top = `${iconRect.top + (iconRect.height / 2) - (dialog.offsetHeight / 2)}px`;  // 讓對話框垂直居中於圖示
+    }
+
+    // 點擊客服圖像時顯示聊天框
+    showDialogBtn.addEventListener("click", () => {
+        chatBox.style.display = "flex";  // 顯示聊天框
+    });
+
+    // 點擊關閉聊天框按鈕時，隱藏聊天框
+    closeChatBtn.addEventListener("click", () => {
+        chatBox.style.display = "none";  // 隱藏聊天框
+    });
+
+    // 發送訊息
+    sendBtn.addEventListener("click", () => {
+        const message = userInput.value.trim();
+        if (message) {
+            // 顯示用戶訊息
+            const userMessage = document.createElement("div");
+            userMessage.classList.add("user-message");
+            userMessage.textContent = message;
+            chatContent.appendChild(userMessage);
+        
+            // 清空輸入框
+            userInput.value = "";
+
+            // 模擬客服回應
+            setTimeout(() => {
+                const botMessage = document.createElement("div");
+                botMessage.classList.add("bot-message");
+                botMessage.textContent = "客服：謝謝您的訊息，我們會盡快處理。";
+                chatContent.appendChild(botMessage);
+                chatContent.scrollTop = chatContent.scrollHeight;  // 自動滾動到底部
+            }, 1000);
+        }
+    });
+
+    // 關閉對話框
+    function closeDialog() {
+        dialogBox.style.display = 'none';
+    }
+
+</script>
+
+    <main>
+        <div class="carousel">
+            <div class="carousel-images">
+                <img src="image/第一張.jpg" alt="Image 1">
+                <img src="image/第二張.jpg" alt="Image 2">
+                <img src="image/第三張.jpg" alt="Image 3">
+            </div>
+            <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+        <script src="script.js"></script>
+
+        
+        <div class="container">
+            <aside>
+                    <h2 style="text-align: center; border: 10px;">最新消息</h2>
+                     <ul>
+                        <li>
+                            <p>民國113年台北霞海城隍廟超度拔薦法會公告(2024/06/27)本廟訂於茲訂於2024年08月27日(二)至08月31日(六)(共五日)
+                            農曆七月二十四日至七月二十八日，啟建民國113年度之超度、普度法會，諸位善信即日起可向辦事處報名登疏。
+                            </p></li>
+                        <li>
+                            <p>民國113年 台北霞海城隍廟 梁皇祝壽法會(2024/03/25)時至年中，本廟於霞海城隍聖誕期間舉辦【梁皇祝壽法會】訂於農曆五月十四日至十八日共五天(國曆2024/6/19~6/23)
+                            </p></li>
+                        <li>
+                            <p>民國113年點新春祈福點燈暨冬令救濟遠鄉關懷活動(2023/12/8)
+                            本廟於本年年終與新春時分舉行完斗與點燈啟斗法會，為眾善信祈求新的一年順利平安，法會後亦將各類供品分送至各慈善單位，籲請信眾們踴躍報名參加。
+                            </p></li>
+                        <li>
+                            <P>民國112年台北霞海城隍廟超度拔薦法會公告(2023/07/14)
+                            本廟訂於茲訂於2023年09月08日(五)至09月12日(二)(共五日),農曆七月二十四日至七月二十八日，啟建民國112年度之超度、普度法會，諸位善信即日起可向辦事處報名登疏。</P></li>
+                        <li>
+                            <p>民國113年 台北霞海城隍廟 梁皇祝壽法會(2024/03/25)時至年中，本廟於霞海城隍聖誕期間舉辦【梁皇祝壽法會】訂於農曆五月十四日至十八日共五天(國曆2024/6/19~6/23)
+                            </p></li>
+                        <li>
+                            <p>民國113年 台北霞海城隍廟 梁皇祝壽法會(2024/03/25)時至年中，本廟於霞海城隍聖誕期間舉辦【梁皇祝壽法會】訂於農曆五月十四日至十八日共五天(國曆2024/6/19~6/23)
+                            </p></li>
+                        <li>
+                            <p>民國113年 台北霞海城隍廟 梁皇祝壽法會(2024/03/25)時至年中，本廟於霞海城隍聖誕期間舉辦【梁皇祝壽法會】訂於農曆五月十四日至十八日共五天(國曆2024/6/19~6/23)
+                            </p></li>
+                    
+                    </ul>
+            </aside>
+    
+            <section class="basic">
+                <article style="text-align: center; border: 10px;padding: 2px;" >
+                    <h2>有關廟宇</h2>
+                        <p><b>霞海城隍廟介紹</b></p>
+                        <p>霞海城隍廟（又稱台北霞海城隍廟）是台灣台北市一座非常著名且具有歷史與文化價值的廟宇，位於大同區的迪化街，建於清朝乾隆年間，至今已有超過二百多年的歷史。
+                        這座廟主要供奉的是城隍爺（城隍神），他是中國民間信仰中掌管一座城市或地方的神明，負責保護地方的平安與治理亡魂。霞海城隍廟是一座具有濃厚地方特色的廟宇，也是台北市的文化景點之一。</p>
+
+                        <p><b>歷史背景</b></p>
+                        <p>霞海城隍廟最早建於清乾隆17年（1752年），由當地的信士所捐資興建。由於當時的台北是商業繁盛的地區，居民生活中會遇到各種災難或不幸，當地民眾便選擇供奉城隍爺，希望保護自己和家人免受災禍，並讓亡魂安息。
+                        建廟初期主要為了鎮守地方，尤其是防止災難、惡靈、疾病等。隨著時間推移，霞海城隍廟不僅成為地方信仰的中心，也發展成為台北市的一大文化地標，並吸引了大量的信徒與遊客參拜。</p>
+
+                        <p><b>主神與神像</b></p>
+                        <p>霞海城隍廟的主神是城隍爺，他是地方的保護神，擔任平安與司法的角色。城隍爺被認為是可以庇佑地方居民免受災難，並保護社會秩序的神明。
+                            在霞海城隍廟中，城隍爺的神像威儀莊嚴，通常穿著官服，手持法器，象徵著他具有治安、解決爭端、保護社會的能力。廟中還供奉著其他輔助神明，如媽祖、土地公等，這些神明都擔負著不同的保護職能。</p>
+                        
+                        <p><b>霞海城隍廟的「月老廳」</b></p>
+                        <p>霞海城隍廟最具特色的地方之一，就是廟中還有一個月老廳，這是廟內的一個特殊區域，專門供奉月老，月老是中國民間信仰中負責媒合姻緣的神明。每年，無數的單身男女都會來到這裡，祈求月老幫助他們找到合適的伴侶，實現美滿姻緣。月老廳的香火非常旺盛，並且有許多與月老相關的習俗。例如，信徒會在月老的神像前繞圈，並求得月老的庇佑，還有一些信徒會在月老像旁的紅線上繫上紅繩，象徵著與所愛之人的姻緣。</p>
+                </article>
+                <article style="text-align: center; border: 10px;padding: 2px;">
+                    <h2>活動回顧</h2>
+                    <p style="text-align: left; padding-left:20px;">2011年07月10/2011台北霞海城隍廟第一季紀事<br>
+                        過年前大家一定會來年貨大街採買，逛逛街、吃美食、許新願，揮別過去，揚眉"兔"氣。...<a href="http://tpecitygod.org/hot-news_review1000710.html">活動剪輯回顧</a></p>
+                    <p style="text-align: left; padding-left:20px;">2010年09月09【平安鐘聲 賜福久久】宗教團體聯合祈福活動實況
+                        ...<a href="http://tpecitygod.org/hot-news_review990909.html">活動剪輯回顧</a><br>民國九十九年九月九日早上九點九分，在台北霞海城隍廟.</p>
+                    <p style="text-align:left; padding-left:20px; ;"><a>2010年07月30
+                        月老繫情吃喝玩樂FU大同記者會<br>
+                        由臺北市大同區公所主辦，以「城市深度導遊」為主軸的...<a href="http://tpecitygod.org/hot-news_review990730.html">活動剪輯回顧</a></p>
+                
+                
+                    </article>
+                <article style="text-align: center; border: 10px;padding: 2px;">
+                    <h2>交通資訊</h2>
+                    <p style="text-align: left; padding-left:20px;"><b>捷運</b></p>
+
+                        <ol>
+                            <li>搭乘捷運至雙連站2號出口，左轉轉乘公車518(馬偕醫院站)至南京西路站,步行3~5分鐘。</li>
+                            <li>搭乘捷運至台北車站延市民大道直走右轉塔城街直走約，步行約30分鐘。</li>
+                            <li>搭乘捷運蘆洲線至大橋頭站延延平北路二段，步行約20分鐘。</li>
+                        </ol>
+                    
+                    <p style="text-align: left; padding-left:20px;"><b>公車</b></p>
+                       
+                        <ol>
+                            <li>可搭乘250、304重慶線至延平一站（南京）下車，</li>
+                            <li>可搭乘250、255、274、304重慶線、639、641、704、518至南京西路口下車。</li>
+                        </ol>
+                </article>
+
+            </section>
+        </div>
+        
+
+    </main>
+
+</body>
+<footer>
+    <div>
+        <p>聯絡我們<br>
+            電話:(02)2558-0346<br>
+            地址:台北市大同區迪化街一段61號<br>
+            服務時間: 每日早上07:00分至晚上07:00時，全年無休。(除公告之颱風、天然災害外)
+           <br>
+
+            copyright@ 2024 月來越奇廟
+        </p> 
+    </div>
+</footer>
+</html>

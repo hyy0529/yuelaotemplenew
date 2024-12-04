@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訂單查詢</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fb;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .form-group button {
+            padding: 12px;
+            font-size: 18px;
+            width: 100%;
+            background-color: #8a0004;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #d4002f;
+        }
+
+        .order-details {
+            margin-top: 30px;
+        }
+
+        .order-details h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .order-details table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .order-details table th,
+        .order-details table td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        .order-details table th {
+            background-color: #f4f7fb;
+        }
+
+        .order-details p {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .order-details p strong {
+            color: #333;
+        }
+
+        /* 顯示 loading 動畫 */
+        #loading {
+            display: none;
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>訂單查詢</h1>
+        
+        <!-- 查詢訂單表單 -->
+        <div class="form-group">
+            <label for="order-id">請輸入訂單號碼：</label>
+            <input type="text" id="order-id" placeholder="輸入訂單號碼(預設兩個貨號ORD12345、ORD67890可以跑訂單查詢頁面)" required>
+            <button type="button" onclick="searchOrder()">查詢訂單</button>
+        </div>
+
+        <!-- 顯示 loading -->
+        <div id="loading">
+            <p>查詢中，請稍候...</p>
+        </div>
+
+        <!-- 訂單詳細資訊 -->
+        <div id="order-details" class="order-details" style="display: none;">
+            <h2>訂單詳情</h2>
+            <table>
+                <tr>
+                    <th>訂單號碼</th>
+                    <td id="order-id-display"></td>
+                </tr>
+                <tr>
+                    <th>訂單日期</th>
+                    <td id="order-date"></td>
+                </tr>
+                <tr>
+                    <th>總金額</th>
+                    <td id="order-total"></td>
+                </tr>
+                <tr>
+                    <th>訂單項目</th>
+                    <td id="order-items"></td>
+                </tr>
+            </table>
+            <p><strong>訂單狀態：</strong><span id="order-status"></span></p>
+        </div>
+        
+        <!-- 顯示錯誤訊息 -->
+        <div id="error-message" style="color: red; text-align: center; display: none;">
+            <p>查無此訂單，請確認訂單號碼。</p>
+        </div>
+    </div>
+
+    <script>
+        // 模擬儲存的訂單資料 (通常會來自後端資料庫)
+        const orders = [
+            {
+                orderId: 'ORD12345',
+                orderDate: '2024-12-01',
+                orderTotal: '$2589.00',
+                items: [
+                    { name: '好運緣結木製拼圖', quantity: 2, price: '$599.00' },
+                    { name: '月老｜甜蜜幸福紫水晶《 ONCE UPON A TIME * 台北霞海城隍廟聯名 摩斯密碼 LOVE 飾品套組 》', quantity: 1, price: '$1880.00' },
+                    { name: '月老零錢包', quantity: 1, price: '$380.00' }
+                ],
+                status: '已付款'
+            },
+            {
+                orderId: 'ORD67890',
+                orderDate: '2024-11-15',
+                orderTotal: '$1314.00',
+                items: [
+                    { name: '愛蕊友肌 霞海城隍廟聯名－ 粉晶滾輪刮痧禮盒', quantity: 1, price: '$120.00' }
+                ],
+                status: '未付款'
+            }
+        ];
+
+        // 查詢訂單函式
+        function searchOrder() {
+            // 顯示 loading
+            document.getElementById("loading").style.display = 'block';
+            
+            // 模擬查詢延遲 (2秒鐘)
+            setTimeout(() => {
+                const orderId = document.getElementById("order-id").value.trim();
+                const order = orders.find(o => o.orderId === orderId);
+                
+                // 隱藏 loading 和錯誤訊息
+                document.getElementById("loading").style.display = 'none';
+                document.getElementById("error-message").style.display = 'none';
+                document.getElementById("order-details").style.display = 'none';
+
+                if (order) {
+                    // 顯示訂單資料
+                    document.getElementById("order-id-display").textContent = order.orderId;
+                    document.getElementById("order-date").textContent = order.orderDate;
+                    document.getElementById("order-total").textContent = order.orderTotal;
+
+                    // 顯示訂單項目
+                    let itemsHtml = '';
+                    order.items.forEach(item => {
+                        itemsHtml += `<p>${item.name} (x${item.quantity}) - ${item.price}</p>`;
+                    });
+                    document.getElementById("order-items").innerHTML = itemsHtml;
+
+                    document.getElementById("order-status").textContent = order.status;
+
+                    document.getElementById("order-details").style.display = 'block';
+                } else {
+                    // 顯示錯誤訊息
+                    document.getElementById("error-message").style.display = 'block';
+                }
+            }, 2000);  // 模擬2秒的查詢延遲
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,284 @@
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+header{
+    padding: 0px;
+    margin: 0px;
+}
+
+
+
+body {
+    background-color: #8a0004;
+    margin: 0px;
+    
+}
+
+h1{
+    font-family: "DFKai-SB";
+    background-color: white;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    padding-top: 20px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+}
+
+nav{
+    background-color: white;
+    position: sticky;
+    top: 0; /* 滚动到顶部时，header 会停在这里 */
+    padding: 0px 0;
+    text-align: center;
+    z-index: 1000; /* 确保 header 在其他内容上方 */
+}
+
+h1{
+    font-family: "DFKai-SB";
+    margin-bottom: 0;
+    background-color: white;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    padding-top: 20px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+}
+
+
+nav {
+    text-align: center;
+    word-spacing: 70px;
+    margin-top: 0%;
+    padding-top: 25px ;
+    padding-right: 50px;
+    padding-bottom: 25px;
+    padding-left: 50px;
+    font-size: 20px;
+
+}
+
+nav a {
+    padding: 14px 16px;
+    display: inline-block;
+}
+
+nav a:hover {
+    background-color:#da8083;
+    color: black;
+}
+
+
+
+footer{
+    background-color:white;
+    padding-top: 5px;
+    padding-right: 50px;
+    padding-bottom: 5px;
+    padding-left: 50px;
+    text-align: center;
+    margin: 0% 0% 0% 0%;
+    font-size: 12px;
+    
+}
+
+/* 按鈕容器，使按鈕水平居中 */
+.button-container {
+    display: flex;
+    justify-content: center;  /* 水平居中對齊 */
+    gap: 20px;  /* 設置按鈕之間的空白 */
+    margin-top: 60px;  /* 設置按鈕區域與文字區域之間的間距 */
+    margin-bottom: 60px;
+    
+
+}
+
+
+button{
+    border-radius: 30px ;
+    border: #8a0004;
+    background-color:  #8a0004;
+    text-decoration-color:  #8a0004;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+button:hover {
+    background-color: #e77a7c;
+}
+
+
+.modal2 {
+    display: none;  /* 預設隱藏 */
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明的黑色背景 */
+}
+
+
+/* 彈出視窗內容樣式 */
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+}
+
+
+/* 關閉按鈕樣式 */
+.close-btn {
+    color: #f1f1f1;
+    font-size: 100px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.icon {
+    font-size: 48px;
+    color: white; /*客服人員顏色*/
+    position: fixed;
+    background-color: #42a847;
+}
+
+ /* 對話框樣式 */
+ .dialog-box {
+    display: block; /* 預設顯示對話框 */
+    position: fixed; /* 絕對定位 */
+    top: 50%; /* 讓對話框在垂直方向上居中 */
+    left: 100%; /* 將對話框顯示在圖示的右邊 */
+    transform: translateY(-50%); /* 垂直居中對話框 */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+    z-index: 11000;
+}
+
+.dialog-box .material-icons {
+    font-size: 30px;
+    color: #4CAF50;  /* 綠色 */
+}
+
+/* 客服關閉按鈕樣式 */
+.close2btn {
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+}
+
+.close2btn:hover {
+    background-color: #45a049;
+}
+
+
+/* 聊天框樣式 */
+.chat-box {
+    position: fixed;
+    top: 50%; /* 讓聊天框垂直居中 */
+    left: 50%; /* 讓聊天框水平居中 */
+    transform: translate(-50%, -50%); /* 確保居中 */
+    width: 300px;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    display: none;
+    flex-direction: column;
+    max-height: 400px;
+    max-width: 300px;
+    z-index: 1000;
+}
+
+.chat-header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close3btn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.close3btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+.chat-content {
+    padding: 10px;
+    overflow-y: auto;
+    flex: 1;
+    max-height: 300px;
+}
+
+.chat-input {
+    display: flex;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.chat-input button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.chat-input button:hover {
+    background-color: #45a049;
+}

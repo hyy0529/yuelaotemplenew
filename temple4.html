@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員中心</title>
+    <link rel="stylesheet" href="memberlogin.css">
+    <header>
+        <section>
+        <h1 style="  font-size: 65px; text-align: center; color:#8a0004 ; "><b>霞海城隍廟</b></h1>
+        </section>
+    </header>
+
+    <nav>
+        <a href="temple1.html">首頁</a>
+        <a href="temple5.html">VR探索遊戲</a>
+        <a href="temple2.html">月老專區</a>
+        <a href="temple3.html">商店專區</a>
+        <a href="temple4.html">會員中心</a>
+    </nav>
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+    <!-- 圖示 -->
+    <span class="material-icons icon" style="font-size: 100px;" id="showDialog">
+        support_agent
+    </span>
+
+    <!-- 對話框 -->
+    <div id="dialog" class="dialog-box" style="display: block;">
+        <span class="material-icons">mark_chat_unread</span>
+        <p>點擊頭像即將為你服務!</p>
+        <button class="close2btn" onclick="closeDialog()">關閉</button>
+    </div>
+
+    <!-- 聊天框 -->
+    <div id="chatBox" class="chat-box" style="display: none;">
+        <div class="chat-header">
+            <span>客服中心</span>
+            <button id="closeChat" class="close3btn">✖️</button>
+        </div>
+        <div class="chat-content" id="chatContent">
+            <!-- 聊天訊息會顯示在這裡 -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="請輸入訊息...(可以隨便打點甚麼)" />
+            <button id="sendBtn">發送</button>
+        </div>
+    </div>
+
+    <script>
+        // 獲取元素
+        const showDialogBtn = document.getElementById("showDialog");
+        const dialogBox = document.getElementById("dialog");
+        const chatBox = document.getElementById("chatBox");
+        const closeChatBtn = document.getElementById("closeChat");
+        const sendBtn = document.getElementById("sendBtn");
+        const userInput = document.getElementById("userInput");
+        const chatContent = document.getElementById("chatContent");
+
+    // 當頁面加載後顯示對話框並定位
+        window.onload = function() {
+            positionDialog();  // 設置對話框位置
+    };
+
+    // 顯示對話框
+    function positionDialog() {
+        const iconRect = showDialogBtn.getBoundingClientRect();
+        const dialog = dialogBox;
+        dialog.style.display = 'block';  // 顯示對話框
+       
+
+        // 設定對話框的位置，使其顯示在圖示的右側並垂直居中
+        dialog.style.left = `${iconRect.left + iconRect.width + 10}px`;  // 讓對話框顯示在圖示的右邊
+        dialog.style.top = `${iconRect.top + (iconRect.height / 2) - (dialog.offsetHeight / 2)}px`;  // 讓對話框垂直居中於圖示
+    }
+
+    // 點擊客服圖像時顯示聊天框
+    showDialogBtn.addEventListener("click", () => {
+        chatBox.style.display = "flex";  // 顯示聊天框
+    });
+
+    // 點擊關閉聊天框按鈕時，隱藏聊天框
+    closeChatBtn.addEventListener("click", () => {
+        chatBox.style.display = "none";  // 隱藏聊天框
+    });
+
+    // 發送訊息
+    sendBtn.addEventListener("click", () => {
+        const message = userInput.value.trim();
+        if (message) {
+            // 顯示用戶訊息
+            const userMessage = document.createElement("div");
+            userMessage.classList.add("user-message");
+            userMessage.textContent = message;
+            chatContent.appendChild(userMessage);
+        
+            // 清空輸入框
+            userInput.value = "";
+
+            // 模擬客服回應
+            setTimeout(() => {
+                const botMessage = document.createElement("div");
+                botMessage.classList.add("bot-message");
+                botMessage.textContent = "客服：謝謝您的訊息，我們會盡快處理。";
+                chatContent.appendChild(botMessage);
+                chatContent.scrollTop = chatContent.scrollHeight;  // 自動滾動到底部
+            }, 1000);
+        }
+    });
+
+    // 關閉對話框
+    function closeDialog() {
+        dialogBox.style.display = 'none';
+    }
+
+</script>
+
+<div class="container">
+    <h2>會員中心</h2>
+
+    <!-- 登入和註冊表單 -->
+    <div id="auth-section">
+        <!-- 登入表單 -->
+        <div id="login-form">
+            <h3>登入</h3>
+            <div class="form-group">
+                <label for="login-username">帳號</label>
+                <input type="text" id="login-username" placeholder="輸入帳號" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">密碼</label>
+                <input type="password" id="login-password" placeholder="輸入密碼" required>
+            </div>
+            <button onclick="login()">登入</button>
+            <div class="toggle-link">
+                <p>還沒有帳號? <a href="javascript:void(0);" onclick="showRegisterForm()">註冊新帳號</a></p>
+            </div>
+        </div>
+
+        <!-- 註冊表單 -->
+        <div id="register-form" style="display: none;">
+            <h3>註冊</h3>
+            <div class="form-group">
+                <label for="register-username">帳號</label>
+                <input type="text" id="register-username" placeholder="輸入帳號" required>
+            </div>
+            <div class="form-group">
+                <label for="register-password">密碼</label>
+                <input type="password" id="register-password" placeholder="輸入密碼" required>
+            </div>
+
+            <div class="form-group">
+                <label for="register-name">姓名</label>
+                <input type="text" id="register-name" placeholder="輸入姓名" required>
+            </div>
+            <div class="form-group">
+                <label for="register-phone">電話</label>
+                <input type="number" id="register-phone" placeholder="輸入電話" required>
+            </div>
+            <div class="form-group">
+                <label for="register-mail">電子信箱</label>
+                <input type="text" id="register-mail" placeholder="輸入電子信箱" required>
+            </div>
+            <div class="form-group">
+                <label for="register-address">地址</label>
+                <input type="text" id="register-address" placeholder="輸入地址" required>
+            </div>
+            <button onclick="register()">註冊</button>
+            <div class="toggle-link">
+                <p>已有帳號? <a href="javascript:void(0);" onclick="showLoginForm()">登入</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 會員中心顯示區域 -->
+    <div id="user-info" class="user-info">
+        <h3>歡迎回來，<span id="user-name"></span>!</h3>
+        <p>在這裡，您可以查看和管理您的帳戶資料。</p>
+
+        <!-- 會員中心功能選單 -->
+        <button class="menu-btn" onclick="window.location.href='member_profile.html'">會員資料</button>
+        <button class="menu-btn" onclick="window.location.href='cart.html'">購物車</button>
+        <button class="menu-btn" onclick="window.location.href='order.html'">訂單查詢</button>
+        <button class="menu-btn" onclick="window.location.href='transaction.html'">交易紀錄</button>
+        <button class="menu-btn" onclick="window.location.href='faq.html'">常見問題</button>
+        <button class="menu-btn" onclick="deleteAccount()">刪除會員</button>
+
+        <button onclick="logout()">登出</button>
+    </div>
+</div>
+
+<script>
+    // 模擬用戶資料儲存
+    function login() {
+        const username = document.getElementById("login-username").value;
+        const password = document.getElementById("login-password").value;
+
+        // 假設帳號和密碼正確
+        if (username === "user" && password === "password") {
+            // 記錄用戶登入狀態
+            localStorage.setItem("isLoggedIn", "true");
+            localStorage.setItem("username", username);
+
+            // 跳轉並顯示會員中心
+            showUserInfo(username);
+        } else {
+            alert("帳號或密碼錯誤");
+        }
+    }
+
+    function register() {
+        const username = document.getElementById("register-username").value;
+        const password = document.getElementById("register-password").value;
+        const name = document.getElementById("register-name").value;
+        const phone = document.getElementById("register-phone").value;
+        const mail = document.getElementById("register-mail").value;
+        const address = document.getElementById("register-address").value;
+
+        // 模擬註冊成功
+        alert("註冊成功，請登入");
+        showLoginForm();  // 顯示登入表單
+    }
+
+    function showLoginForm() {
+        document.getElementById("login-form").style.display = "block";
+        document.getElementById("register-form").style.display = "none";
+    }
+
+    function showRegisterForm() {
+        document.getElementById("login-form").style.display = "none";
+        document.getElementById("register-form").style.display = "block";
+    }
+
+    function showUserInfo(username) {
+        document.getElementById("auth-section").style.display = "none";
+        document.getElementById("user-info").style.display = "block";
+        document.getElementById("user-name").textContent = username;
+    }
+
+    function logout() {
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("username");
+
+        // 顯示登入註冊頁面
+        document.getElementById("auth-section").style.display = "block";
+        document.getElementById("user-info").style.display = "none";
+    }
+
+    // 刪除會員
+    function deleteAccount() {
+        if (confirm("您確定要刪除帳戶嗎？此操作無法恢復。")) {
+            alert("帳戶已刪除");
+            logout();
+        }
+    }
+
+    // 頁面加載時檢查是否已登入
+    window.onload = function() {
+        const isLoggedIn = localStorage.getItem("isLoggedIn");
+        if (isLoggedIn === "true") {
+            const username = localStorage.getItem("username");
+            showUserInfo(username);
+        } else {
+            showLoginForm();  // 預設顯示登入頁面
+        }
+    };
+</script>
+
+
+
+
+</body>
+<footer>
+    <div>
+        <p>聯絡我們<br>
+            電話:(02)2558-0346<br>
+            地址:台北市大同區迪化街一段61號<br>
+            服務時間: 每日早上07:00分至晚上07:00時，全年無休。(除公告之颱風、天然災害外)
+           <br>
+
+            copyright@ 2024 月來越奇廟
+        </p> 
+    </div>
+</footer>
+</html>
+

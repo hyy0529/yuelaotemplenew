@@ -1,0 +1,320 @@
+
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+h1{
+    font-family: "DFKai-SB";
+    background-color: white;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    padding-top: 20px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+}
+
+nav{
+    background-color: white;
+    position: sticky;
+    top: 0; /* 滚动到顶部时，header 会停在这里 */
+    padding: 0px 0;
+    text-align: center;
+    z-index: 1000; /* 确保 header 在其他内容上方 */
+}
+
+h1{
+    font-family: "DFKai-SB";
+    margin-bottom: 0;
+    background-color: white;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    padding-top: 20px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+}
+
+
+nav {
+    text-align: center;
+    word-spacing: 70px;
+    margin-top: 0%;
+    padding-top: 25px ;
+    padding-right: 50px;
+    padding-bottom: 25px;
+    padding-left: 50px;
+    font-size: 20px;
+
+}
+
+nav a {
+    padding: 14px 16px;
+    display: inline-block;
+    position: relative; /* 需要给导航项设置相对定位 */
+}
+
+nav a:hover {
+    background-color:#da8083;
+    color: black;
+}
+
+
+
+footer{
+    background-color:white;
+    padding-top: 5px;
+    padding-right: 50px;
+    padding-bottom: 5px;
+    padding-left: 50px;
+    text-align: center;
+    margin: 0% 0% 0% 0%;
+    font-size: 12px;
+    
+}
+
+
+
+.icon {
+    font-size: 48px;
+    color: white; /*客服人員顏色*/
+    position: fixed;
+    background-color: #42a847;
+}
+
+ /* 對話框樣式 */
+ .dialog-box {
+    display: block; /* 預設顯示對話框 */
+    position: fixed; /* 絕對定位 */
+    top: 50%; /* 讓對話框在垂直方向上居中 */
+    left: 100%; /* 將對話框顯示在圖示的右邊 */
+    transform: translateY(-50%); /* 垂直居中對話框 */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+    z-index: 11000;
+}
+
+.dialog-box .material-icons {
+    font-size: 30px;
+    color: #4CAF50;  /* 綠色 */
+}
+
+/* 客服關閉按鈕樣式 */
+.close2btn {
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+}
+
+.close2btn:hover {
+    background-color: #45a049;
+}
+
+
+/* 聊天框樣式 */
+.chat-box {
+    position: fixed;
+    top: 50%; /* 讓聊天框垂直居中 */
+    left: 50%; /* 讓聊天框水平居中 */
+    transform: translate(-50%, -50%); /* 確保居中 */
+    width: 300px;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    display: none;
+    flex-direction: column;
+    max-height: 400px;
+    max-width: 300px;
+    z-index: 1000;
+}
+
+.chat-header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close3btn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.close3btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+.chat-content {
+    padding: 10px;
+    overflow-y: auto;
+    flex: 1;
+    max-height: 300px;
+}
+
+.chat-input {
+    display: flex;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.chat-input button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.chat-input button:hover {
+    background-color: #45a049;
+}
+
+/* 购物车图标 */
+.cart-icon-container {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    background-color: #f00;
+    color: white;
+    font-size: 16px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+
+
+
+.product-page {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.product-image {
+    max-width: 400px;
+    margin-right: 20px;
+}
+.product-details {
+    max-width: 600px;
+}
+.product-details h2 {
+    color: #8a0004;
+}
+.price {
+    font-size: 24px;
+    color: #ff4500;
+}
+.quantity-container {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+.quantity-container button {
+    font-size: 20px;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+.quantity-container input {
+    width: 50px;
+    text-align: center;
+    font-size: 18px;
+    margin: 0 10px;
+}
+.description {
+    margin-top: 20px;
+}
+.add-to-cart-btn {
+    background-color: #8a0004;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    margin-top: 20px;
+}
+
+/* 猜你喜歡區塊 */
+.recommendations {
+    margin-top: 40px;
+    text-align: center;
+}
+.recommendations h2 {
+    color: #8a0004;
+    margin-bottom: 20px;
+}
+.recommendation-products {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.recommendation-product {
+    text-align: center;
+    margin: 10px;
+    width: 200px;
+}
+.recommendation-product img {
+    width: 100%;
+    height: auto;
+}
+.recommendation-product h3 {
+    color: #8a0004;
+    font-size: 18px;
+}
+.recommendation-product .price {
+    font-size: 20px;
+    color: #ff4500;
+}
+.recommendation-product .add-to-cart-btn {
+    background-color: #8a0004;
+    color: white;
+    font-size: 16px;
+    padding: 8px 15px;
+    cursor: pointer;
+    border: none;
+    margin-top: 10px;
+}

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員資料</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fb;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .user-info p {
+            font-size: 20px;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        .user-info strong {
+            color: #333;
+        }
+
+        button {
+            background-color: #8a0004;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 19px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #d4002f;
+        }
+
+        .edit-form, .change-password-form {
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            border-color: #8a0004;
+            outline: none;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .cancel-button {
+            background-color: #ccc;
+        }
+
+        .cancel-button:hover {
+            background-color: #aaa;
+        }
+
+        .changepassword{
+            background-color: white;
+            color: blue;
+            
+            
+        }
+
+        .changepassword:hover{
+            background-color: aquamarine;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- 會員資料區域 -->
+    <div class="container">
+        <h1>會員資料</h1>
+        
+        <!-- 會員資訊顯示區 -->
+        <div id="user-info" class="user-info">
+            <p><strong>帳號：</strong><span id="username"></span></p>
+            <p><strong>姓名：</strong><span id="user-name"></span></p>
+            <p><strong>電話：</strong><span id="user-phone"></span></p>
+            <p><strong>電子信箱：</strong><span id="user-email"></span></p>
+            <p><strong>地址：</strong><span id="user-address"></span></p>
+
+            <button onclick="editProfile()">編輯資料</button>
+            <a href="temple4.html"><button>返回</button></a>
+            <button class="changepassword" onclick="showChangePasswordForm()">更改密碼</button>
+            
+        </div>
+
+        <!-- 編輯會員資料表單 -->
+        <div id="edit-form" class="edit-form">
+            <h3>編輯會員資料</h3>
+            <form>
+                <div class="form-group">
+                    <label for="edit-name">姓名</label>
+                    <input type="text" id="edit-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-phone">電話</label>
+                    <input type="text" id="edit-phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-email">電子信箱</label>
+                    <input type="email" id="edit-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-address">地址</label>
+                    <input type="text" id="edit-address" required>
+                </div>
+                <button type="button" onclick="saveProfile()">儲存變更</button>
+                <button type="button" class="cancel-button" onclick="cancelEdit()">取消</button>
+            </form>
+        </div>
+
+        <!-- 更改密碼表單 -->
+        <div id="change-password-form" class="change-password-form">
+            <h3>更改密碼</h3>
+            <form>
+                <div class="form-group">
+                    <label for="current-password">當前密碼</label>
+                    <input type="password" id="current-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-password">新密碼</label>
+                    <input type="password" id="new-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">確認新密碼</label>
+                    <input type="password" id="confirm-password" required>
+                </div>
+                <button type="button" onclick="changePassword()">儲存新密碼</button>
+                <button type="button" class="cancel-button" onclick="cancelChangePassword()">取消</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        // 頁面加載時顯示用戶資料
+        window.onload = function() {
+            const username = localStorage.getItem("username");
+            const userName = localStorage.getItem("name");
+            const userPhone = localStorage.getItem("phone");
+            const userEmail = localStorage.getItem("email");
+            const userAddress = localStorage.getItem("address");
+
+            document.getElementById("username").textContent = username;
+            document.getElementById("user-name").textContent = userName;
+            document.getElementById("user-phone").textContent = userPhone;
+            document.getElementById("user-email").textContent = userEmail;
+            document.getElementById("user-address").textContent = userAddress;
+        };
+
+        // 編輯資料按鈕觸發
+        function editProfile() {
+            document.getElementById("user-info").style.display = "none";
+            document.getElementById("edit-form").style.display = "block";
+
+            document.getElementById("edit-name").value = localStorage.getItem("name");
+            document.getElementById("edit-phone").value = localStorage.getItem("phone");
+            document.getElementById("edit-email").value = localStorage.getItem("email");
+            document.getElementById("edit-address").value = localStorage.getItem("address");
+        }
+
+        // 儲存編輯後的資料
+        function saveProfile() {
+            const newName = document.getElementById("edit-name").value;
+            const newPhone = document.getElementById("edit-phone").value;
+            const newEmail = document.getElementById("edit-email").value;
+            const newAddress = document.getElementById("edit-address").value;
+
+            localStorage.setItem("name", newName);
+            localStorage.setItem("phone", newPhone);
+            localStorage.setItem("email", newEmail);
+            localStorage.setItem("address", newAddress);
+
+            document.getElementById("user-name").textContent = newName;
+            document.getElementById("user-phone").textContent = newPhone;
+            document.getElementById("user-email").textContent = newEmail;
+            document.getElementById("user-address").textContent = newAddress;
+
+            document.getElementById("user-info").style.display = "block";
+            document.getElementById("edit-form").style.display = "none";
+        }
+
+        // 取消編輯，返回會員資料頁面
+        function cancelEdit() {
+            document.getElementById("user-info").style.display = "block";
+            document.getElementById("edit-form").style.display = "none";
+        }
+
+        // 顯示更改密碼表單
+        function showChangePasswordForm() {
+            document.getElementById("user-info").style.display = "none";
+            document.getElementById("change-password-form").style.display = "block";
+        }
+
+        // 儲存新密碼
+        function changePassword() {
+            const currentPassword = document.getElementById("current-password").value;
+            const newPassword = document.getElementById("new-password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+
+            if (newPassword !== confirmPassword) {
+                alert("新密碼和確認新密碼不一致！");
+                return;
+            }
+
+            if (currentPassword === localStorage.getItem("password")) {
+                localStorage.setItem("password", newPassword);
+                alert("密碼已成功更改！");
+                document.getElementById("change-password-form").style.display = "none";
+                document.getElementById("user-info").style.display = "block";
+            } else {
+                alert("當前密碼不正確！");
+            }
+        }
+
+        // 取消更改密碼，返回會員資料頁面
+        function cancelChangePassword() {
+            document.getElementById("change-password-form").style.display = "none";
+            document.getElementById("user-info").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
+

@@ -1,0 +1,92 @@
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    display: grid;
+    text-align: center;
+    grid-template-rows: 80px auto 130px;
+    grid-template-columns: auto;
+ 
+}
+
+
+.fuction {
+    text-align: right;
+}
+
+.menu {
+    margin-left: 30px;
+    padding-right: 20px;
+}
+
+
+main {
+    grid-area: main;
+    margin: 20px 80px;
+}
+
+
+.Q {
+    width: 500px;
+    background-color: lightblue;
+    padding: 5px 10px;
+    border-radius: 15px;
+    text-align: left;
+    color: darkblue;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#Q1:hover {
+    color: red;
+}
+
+#Q2:hover {
+    color: red;
+}
+
+#Q3:hover {
+    color: red;
+}
+
+#Q4:hover {
+    color: red;
+}
+
+#Q5:hover {
+    color: red;
+}
+
+#Q6:hover {
+    color: red;
+}
+
+#Q7:hover {
+    color: red;
+}
+
+#Q8:hover {
+    color: red;
+}
+
+#Q9:hover {
+    color: red;
+}
+
+#Q10:hover {
+    color: red;
+}
+
+#Q11:hover {
+    color: red;
+}
+
+#Q12:hover {
+    color: red;
+}
+
+.A {
+    display: none;
+    margin: 10px 5px;
+}

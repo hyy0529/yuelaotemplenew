@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>結帳畫面</title>
+    <link rel="stylesheet" href="checkout.css"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <header>
+        <section>
+        <h1 style="  font-size: 65px; text-align: center; color:#8a0004 ; "><b>霞海城隍廟</b></h1>
+        </section>
+    </header>
+
+    <nav>
+        <a href="temple1.html">首頁</a>
+        <a href="temple5.html">VR探索遊戲</a>
+        <a href="temple2.html">月老專區</a>
+        <a href="temple3.html">商店專區</a>
+        <a href="temple4.html">會員中心</a>
+        <a href="cart.html"  class="cart-icon-container" >
+            <span class="material-icons cart-icon" style="font-size: 50px; color: black;">add_shopping_cart</span>
+            <!-- 购物车数量 -->
+            <div class="cart-count" id="cart-count">0</div>      
+        </a>
+    </nav>
+
+
+</head>
+<body>
+    <main>
+        <!-- 訂單摘要 -->
+        <div class="order-summary">
+            <h2>訂單摘要</h2>
+            <p>商品總金額: $450</p>
+            <p>運費: $50</p>
+            <p>優惠券: <input type="text" placeholder="請輸入優惠券代碼"></p>
+            <div class="line"></div>
+            <p><strong>總金額: $500</strong></p>
+        </div>
+
+        <!-- 付款資訊 -->
+        <div class="payment-info">
+            <h2>付款方式</h2>
+            <p>付款方式:
+                <select name="payment-method">
+                    <option value="cash-on-delivery">貨到付款</option>
+                    <option value="credit-card">信用卡</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="paypal">線上轉帳</option>
+                </select>
+            </p>
+
+            <h2>送貨資訊</h2>
+            <p>選擇送貨方式:
+                <select name="shipping-method">
+                    <option value="home-delivery">宅配 (運費 $80)</option>
+                    <option value="7-eleven">7-11 取貨 (運費 $60)</option>
+                    <option value="family-mart">全家取貨 (運費 $60)</option>
+                </select>
+            </p>
+            <p>送貨地址: <input type="text" placeholder="請輸入您的送貨地址" required></p>
+            <p>聯絡電話: <input type="text" placeholder="請輸入您的聯絡電話" required></p>
+
+            <button class="btn" onclick="submitOrder()">提交訂單</button>
+        </div>
+    </main>
+
+
+     <script>
+        // 在結帳頁面顯示
+        document.getElementById('subtotal').textContent = subtotal;
+        document.getElementById('shippingFee').textContent = shippingFee;
+        document.getElementById('totalAmount').textContent = totalAmount;
+
+        // 提交訂單函數
+        function submitOrder() {
+            alert("訂單已提交，謝謝您的購買！你的訂單編號是:");
+            // 可以在這裡將訂單數據發送到後端伺服器
+            window.location.href = "temple3.html";  // 跳轉到訂單完成頁面
+        }
+    </script>
+     
+</body>
+<footer>
+    <div>
+        <p>聯絡我們<br>
+            電話:(02)2558-0346<br>
+            地址:台北市大同區迪化街一段61號<br>
+            服務時間: 每日早上07:00分至晚上07:00時，全年無休。(除公告之颱風、天然災害外)
+           <br>
+
+            copyright@ 2024 月來越奇廟
+        </p> 
+    </div>
+</footer>
+</html>

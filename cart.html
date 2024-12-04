@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>購物清單</title>
+    <link rel="stylesheet" href="cart.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <header>
+        <section>
+        <h1 style="  font-size: 65px; text-align: center; color:#8a0004 ; "><b>霞海城隍廟</b></h1>
+        </section>
+    </header>
+
+    <nav>
+        <a href="temple1.html">首頁</a>
+        <a href="temple5.html">VR探索遊戲</a>
+        <a href="temple2.html">月老專區</a>
+        <a href="temple3.html">商店專區</a>
+        <a href="temple4.html">會員中心</a>
+        <a href="cart.html"  class="cart-icon-container" >
+            <span class="material-icons cart-icon" style="font-size: 50px; color: black;">add_shopping_cart</span>
+            <!-- 购物车数量 -->
+            <div class="cart-count" id="cart-count">0</div>      
+        </a>
+    </nav>
+
+
+</head> 
+<body>
+    <main>
+        <!-- 商品列表 -->
+        <div class="cart-items">
+            <div class="cart-item">
+                <div class="item-info">
+                    <img src="image/好運緣結木製拼圖.jpg" alt="商品1">
+                    <span>mr. sheep 霞海城隍廟聯名－好運緣結木製拼圖</span>
+                </div>
+                <div>
+                    <p>599元</p>
+                    <input type="button" value="-" onclick="changeQuantity('item1', -1)">
+                    <input type="text" id="item1" value="0" readonly>
+                    <input type="button" value="+" onclick="changeQuantity('item1', 1)">
+                </div>
+            </div>
+
+            <div class="cart-item">
+                <div class="item-info">
+                    <img src="image/紫水晶.jpg" alt="商品2">
+                    <span>月老｜甜蜜幸福紫水晶《 ONCE UPON A TIME * 台北霞海城隍廟聯名 摩斯密碼 LOVE 飾品套組 》</span>
+                </div>
+                <div>
+                    <p>1880元</p>
+                    <input type="button" value="-" onclick="changeQuantity('item2', -1)">
+                    <input type="text" id="item2" value="0" readonly>
+                    <input type="button" value="+" onclick="changeQuantity('item2', 1)">
+                </div>
+            </div>
+
+            <div class="cart-item">
+                <div class="item-info">
+                    <img src="image/零錢包.jpg" alt="商品3">
+                    <span>瀏海樹 霞海城隍廟聯名－月老零錢包</span>
+                </div>
+                <div>
+                    <p>380元</p>
+                    <input type="button" value="-" onclick="changeQuantity('item3', -1)">
+                    <input type="text" id="item3" value="0" readonly>
+                    <input type="button" value="+" onclick="changeQuantity('item3', 1)">
+                </div>
+            </div>
+        </div>
+
+        <!-- 購物車總結 -->
+        <div class="cart-summary">
+            <h2>訂單摘要</h2>
+            <p id="total-price">總金額: $0</p>
+            <p id="shipping-fee">運費: $0</p>
+            <p>超過1000元免運費!!!</p>
+            <!-- 使用 <a> 標籤來跳轉到結帳頁面 -->
+            <a href="checkout.html"><button class="btn">結帳</button></a>
+        </div>
+    </main>
+
+    <script>
+        // 商品價格
+        const prices = {
+            item1: 599,
+            item2: 1880,
+            item3: 380,
+        };
+
+        // 改變商品數量
+        function changeQuantity(itemId, change) {
+            const inputField = document.getElementById(itemId);
+            let currentQuantity = parseInt(inputField.value);
+            currentQuantity += change;
+            if (currentQuantity < 0) {
+                currentQuantity = 0; // 防止數量小於0
+            }
+            inputField.value = currentQuantity;
+            updateCart(); // 更新總價和運費
+        }
+
+        // 更新總價和運費
+        function updateCart() {
+            let total = 0;
+            let shipping = 0;
+
+            // 計算總價
+            for (let item in prices) {
+                const quantity = parseInt(document.getElementById(item).value);
+                total += quantity * prices[item];
+            }
+
+            // 運費
+            if (total >= 1000) {
+                shipping = 0; 
+            } else {
+                shipping = 80; 
+            }
+
+            // 更新顯示
+            document.getElementById("total-price").textContent = `總金額: $${total}`;
+            document.getElementById("shipping-fee").textContent = `運費: $${shipping}`;
+        }
+
+    </script>
+
+</body>
+<footer>
+    <div>
+        <p>聯絡我們<br>
+            電話:(02)2558-0346<br>
+            地址:台北市大同區迪化街一段61號<br>
+            服務時間: 每日早上07:00分至晚上07:00時，全年無休。(除公告之颱風、天然災害外)
+           <br>
+
+            copyright@ 2024 月來越奇廟
+        </p> 
+    </div>
+</footer>
+</html>
+</html>

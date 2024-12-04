@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品頁</title>
+    <link rel="stylesheet" href="product.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <header>
+        <section>
+        <h1 style="  font-size: 65px; text-align: center; color:#8a0004 ; "><b>霞海城隍廟</b></h1>
+        </section>
+    </header>
+
+    <nav>
+        <a href="temple1.html">首頁</a>
+        <a href="temple5.html">VR探索遊戲</a>
+        <a href="temple2.html">月老專區</a>
+        <a href="temple3.html">商店專區</a>
+        <a href="temple4.html">會員中心</a>
+        <a href="cart.html"  class="cart-icon-container" >
+            <span class="material-icons cart-icon" style="font-size: 50px; color: black;">add_shopping_cart</span>
+            <!-- 购物车数量 -->
+            <div class="cart-count" id="cart-count">0</div>      
+        </a>
+    </nav>
+
+</head>
+<body>
+
+    <!-- 圖示 -->
+    <span class="material-icons icon" style="font-size: 100px;" id="showDialog">
+        support_agent
+    </span>
+
+    <!-- 對話框 -->
+    <div id="dialog" class="dialog-box" style="display: block;">
+        <span class="material-icons">mark_chat_unread</span>
+        <p>點擊頭像即將為你服務!</p>
+        <button class="close2btn" onclick="closeDialog()">關閉</button>
+    </div>
+
+    <!-- 聊天框 -->
+    <div id="chatBox" class="chat-box" style="display: none;">
+        <div class="chat-header">
+            <span>客服中心</span>
+            <button id="closeChat" class="close3btn">✖️</button>
+        </div>
+        <div class="chat-content" id="chatContent">
+            <!-- 聊天訊息會顯示在這裡 -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="請輸入訊息...(可以隨便打點甚麼)" />
+            <button id="sendBtn">發送</button>
+        </div>
+    </div>
+
+    <script>
+        // 獲取元素
+        const showDialogBtn = document.getElementById("showDialog");
+        const dialogBox = document.getElementById("dialog");
+        const chatBox = document.getElementById("chatBox");
+        const closeChatBtn = document.getElementById("closeChat");
+        const sendBtn = document.getElementById("sendBtn");
+        const userInput = document.getElementById("userInput");
+        const chatContent = document.getElementById("chatContent");
+
+    // 當頁面加載後顯示對話框並定位
+        window.onload = function() {
+            positionDialog();  // 設置對話框位置
+    };
+
+    // 顯示對話框
+    function positionDialog() {
+        const iconRect = showDialogBtn.getBoundingClientRect();
+        const dialog = dialogBox;
+
+        dialog.style.display = 'block';  // 顯示對話框
+       
+
+        // 設定對話框的位置，使其顯示在圖示的右側並垂直居中
+        dialog.style.left = `${iconRect.left + iconRect.width + 10}px`;  // 讓對話框顯示在圖示的右邊
+        dialog.style.top = `${iconRect.top + (iconRect.height / 2) - (dialog.offsetHeight / 2)}px`;  // 讓對話框垂直居中於圖示
+    }
+
+    // 點擊客服圖像時顯示聊天框
+    showDialogBtn.addEventListener("click", () => {
+        chatBox.style.display = "flex";  // 顯示聊天框
+    });
+
+    // 點擊關閉聊天框按鈕時，隱藏聊天框
+    closeChatBtn.addEventListener("click", () => {
+        chatBox.style.display = "none";  // 隱藏聊天框
+    });
+
+    // 發送訊息
+    sendBtn.addEventListener("click", () => {
+        const message = userInput.value.trim();
+        if (message) {
+            // 顯示用戶訊息
+            const userMessage = document.createElement("div");
+            userMessage.classList.add("user-message");
+            userMessage.textContent = message;
+            chatContent.appendChild(userMessage);
+        
+            // 清空輸入框
+            userInput.value = "";
+
+            // 模擬客服回應
+            setTimeout(() => {
+                const botMessage = document.createElement("div");
+                botMessage.classList.add("bot-message");
+                botMessage.textContent = "客服：謝謝您的訊息，我們會盡快處理。";
+                chatContent.appendChild(botMessage);
+                chatContent.scrollTop = chatContent.scrollHeight;  // 自動滾動到底部
+            }, 1000);
+        }
+    });
+
+    // 關閉對話框
+    function closeDialog() {
+        dialogBox.style.display = 'none';
+    }
+
+</script>
+<script>
+    // 定义购物车数量变量
+    let cartCount = 0;
+
+    // 增加购物车数量的函数
+    function addToCart() {
+        cartCount++; // 每次点击时，购物车数量增加
+        document.getElementById('cart-count').innerText = cartCount; // 更新购物车数量显示
+    }
+</script>
+
+<!-- 商品頁內容 -->
+<div class="product-page">
+    <!-- 商品圖片 -->
+    <div class="product-image">
+        <img src="image/好運緣結木製拼圖.jpg" alt="商品圖片" style="width: 100%;">
+    </div>
+
+    <!-- 商品細節 -->
+    <div class="product-details">
+        <h2>mr. sheep 霞海城隍廟聯名－好運緣結木製拼圖</h2>
+        <p class="price">599元</p>
+
+        <!-- 數量調整區域 -->
+        <div class="quantity-container">
+            <button onclick="decreaseQuantity()">-</button>
+            <input type="text" id="quantity" value="1" readonly>
+            <button onclick="increaseQuantity()">+</button>
+        </div>
+
+        <!-- 商品說明 -->
+        <div class="description">
+            <h3>商品說明</h3>
+            <p>mr. sheep好運緣結木製拼圖，帶你和好運正式結緣！這款拼圖是由精緻的木材製成，適合用作家居裝飾，也可以作為送禮的好選擇。每一塊拼圖的設計都蘊含了深厚的祝福與良好的寓意，讓你感受到來自霞海城隍廟的庇佑。</p>
+        </div>
+
+        <!-- 加入購物車按鈕 -->
+        <button class="add-to-cart-btn" onclick="addToCart()" >加入購物車</button>
+    </div>
+</div>
+
+<script>
+     // 定義購物車總數量
+     let totalQuantity = 0;
+
+    // 初始商品數量
+    let quantity = 1;
+
+    // 增加數量
+    function increaseQuantity() {
+        quantity++;
+        document.getElementById('quantity').value = quantity;
+}
+
+    // 減少數量
+    function decreaseQuantity() {
+        if (quantity > 1) {
+            quantity--;
+            document.getElementById('quantity').value = quantity;
+        }
+}
+
+    // 加入購物車
+    function addToCart() {
+        // 增加當前加入的商品數量到總數量中
+        totalQuantity += quantity;  // 使用當前的 quantity 值
+
+        // 更新購物車數量顯示
+        document.getElementById('cart-count').innerText = totalQuantity;
+
+        // 顯示已加入商品數量
+        alert(`已將 ${quantity} 件商品加入購物車！`);
+}
+</script>
+
+ <!-- 猜你喜歡區塊 -->
+ <div class="recommendations">
+    <h2>猜你喜歡</h2>
+    <div class="recommendation-products">
+        <!-- 商品1 -->
+        <div class="recommendation-product">
+            <a href="product1.html">
+            <img src="image/客製夜燈時光機.jpg" alt="商品1"></a>
+            <h3>客製夜燈時光機</h3>
+            <p class="price">2,880元</p>
+            <button class="add-to-cart-btn" onclick="addToCart()">加入購物車</button>
+        </div>
+
+        <!-- 商品2 -->
+        <div class="recommendation-product">
+            <a href="product1.html">
+            <img src="image/粉金滾輪.jpg" alt="商品2"></a>
+            <h3>粉晶滾輪刮痧禮盒</h3>
+            <p class="price">1,314元</p>
+            <button class="add-to-cart-btn" onclick="addToCart()">加入購物車</button>
+        </div>
+
+        <!-- 商品3 -->
+        <div class="recommendation-product">
+            <a href="product1.html">
+            <img src="image/泡腳組合.jpg" alt="商品3"></a>
+            <h3>漢方美容足浴泡腳組</h3>
+            <p class="price">1,750元</p>
+            <button class="add-to-cart-btn" onclick="addToCart()">加入購物車</button>
+        </div>
+    </div>
+</div>
+</body>
+<footer>
+    <div>
+        <p>聯絡我們<br>
+            電話:(02)2558-0346<br>
+            地址:台北市大同區迪化街一段61號<br>
+            服務時間: 每日早上07:00分至晚上07:00時，全年無休。(除公告之颱風、天然災害外)
+           <br>
+
+            copyright@ 2024 月來越奇廟
+        </p> 
+    </div>
+</footer>
+</html>

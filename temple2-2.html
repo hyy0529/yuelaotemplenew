@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抽籤畫面</title>
+    <link rel="stylesheet" href="temple2-2.css">
+
+</head>
+<body>
+    <!-- 抽籤畫面 -->
+    <div class="lottery-container" id="lotteryContainer">
+        <h1>廟宇抽籤</h1>
+
+        <!-- 籤筒顯示區 -->
+        <div class="lottery-tube-container">
+            <img id="lotteryTube" src="image/lotteryTube.PNG" alt="籤筒" />
+        </div>
+        
+        <!-- 抽籤按鈕 -->
+        <button class="lottery-btn" id="drawBtn">抽籤</button>
+
+        <!-- 顯示籤號 -->
+        <div id="lotteryNumber" class="lottery-number">請點擊「抽籤」</div>
+
+        <button class="next-btn" id="nextBtn" style="display: none;">下一步</button>
+    </div>
+
+    <!-- 擲筊畫面 -->
+    <div class="divination-container" id="divinationContainer" style="display: none;">
+        <h1>擲筊</h1>
+        <div class="divination-cups" id="divinationCups">
+            <div class="divination-cup" id="cup1">
+                <p id="cup1Result">請擲筊</p>
+            </div>
+        </div>
+        <button class="lottery-btn" id="divinationBtn">擲筊</button>
+        <button class="lottery-btn" id="nextActionBtn" style="display: none;">領取籤詩</button>
+        <button class="lottery-btn" id="retryBtn" style="display: none;">重新抽籤</button>
+    </div>
+
+    <script>
+        // 等待 DOM 加載完成後再執行 JavaScript
+        document.addEventListener("DOMContentLoaded", function () {
+            const drawBtn = document.getElementById("drawBtn");
+            const lotteryTube = document.getElementById("lotteryTube");
+            const lotteryNumber = document.getElementById("lotteryNumber");
+            const nextBtn = document.getElementById("nextBtn");
+            const lotteryContainer = document.getElementById("lotteryContainer");
+
+            const divinationContainer = document.getElementById("divinationContainer");
+            const cup1Result = document.getElementById("cup1Result");
+            const divinationBtn = document.getElementById("divinationBtn");
+            const nextActionBtn = document.getElementById("nextActionBtn");
+            const retryBtn = document.getElementById("retryBtn");
+
+            let drawnNumber = null;
+
+            // 擲筊的結果選項
+            const divinationResults = [
+                '聖筊',  // 聖筊
+                '笑筊',  // 笑筊
+                '陰筊'   // 陰筊
+            ];
+
+            // 抽籤邏輯
+            drawBtn.addEventListener("click", () => {
+                lotteryTube.style.animation = "shake-tube 1s ease-in-out";
+                setTimeout(() => {
+                    drawnNumber = Math.floor(Math.random() * 100) + 1; // 隨機抽取籤號
+                    lotteryNumber.textContent = `抽出的是:第 ${drawnNumber}號籤詩`;
+                    nextBtn.style.display = "inline-block"; // 顯示「下一步」按鈕
+                }, 1000);  // 搖動結束後顯示籤號
+            });
+
+            // 下一步按鈕的邏輯
+            nextBtn.addEventListener("click", () => {
+                // 隱藏抽籤畫面
+                lotteryContainer.style.display = "none";  
+                // 顯示擲筊畫面
+                divinationContainer.style.display = "block";  
+            });
+
+            // 擲筊按鈕的邏輯
+            divinationBtn.addEventListener("click", () => {
+                // 隨機選擇一個擲筊結果
+                const result1 = divinationResults[Math.floor(Math.random() * divinationResults.length)];
+
+                // 顯示結果
+                cup1Result.textContent = result1;
+
+                // 隱藏擲筊按鈕
+                divinationBtn.style.display = "none";
+
+                // 根據擲筊結果顯示對應按鈕
+                if (result1 === '聖筊') {
+                    // 顯示領取籤詩按鈕
+                    nextActionBtn.style.display = "inline-block";
+                    retryBtn.style.display = "none"; // 隱藏重新抽籤按鈕
+                } else {
+                    // 顯示重新抽籤按鈕
+                    retryBtn.style.display = "inline-block";
+                    nextActionBtn.style.display = "none"; // 隱藏領取籤詩按鈕
+                }
+            });
+
+            // 領取籤詩的邏輯，跳轉到其他頁面
+            nextActionBtn.addEventListener("click", () => {
+                // 這裡可以顯示籤號和結果（這裡是直接跳轉的範例）
+                alert(`您抽到了籤號 ${drawnNumber}，擲筊結果是：${cup1Result.textContent}`);
+                
+                // 跳轉到另一個頁面
+                window.location.href = "poem.html";  // 您可以替換為具體的頁面路徑
+            });
+
+            // 重新抽籤的邏輯
+            retryBtn.addEventListener("click", () => {
+                // 隱藏擲筊畫面，返回到抽籤畫面
+                divinationContainer.style.display = "none";  
+                lotteryContainer.style.display = "block";  
+                nextBtn.style.display = "none"; // 隱藏下一步按鈕
+                nextActionBtn.style.display = "none"; // 隱藏領取籤詩按鈕
+                retryBtn.style.display = "none"; // 隱藏重新抽籤按鈕
+                lotteryNumber.textContent = "請點擊「抽籤」"; // 恢復初始顯示
+            });
+
+            // 重新抽籤後恢復擲筊畫面
+            retryBtn.addEventListener("click", () => {
+                // 隱藏重新抽籤按鈕，顯示擲筊按鈕
+                retryBtn.style.display = "none";
+                divinationBtn.style.display = "inline-block";  // 顯示擲筊按鈕
+                cup1Result.textContent = "請擲筊"; // 清空顯示結果
+            });
+        });
+    </script>
+</body>
+
+
+</html>

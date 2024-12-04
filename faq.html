@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常見問題</title>
+    <link rel="stylesheet" href="faq.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+</head>
+<body>
+        <div>
+            <div id="oftenQ">
+                <h3>常見問題</h3>
+                <div>
+                  <button class="Q" id="Q1">台北霞海城隍廟的服務時間是?</button>
+                  <div class="A" id="A1">每日早上07:00分至晚上07:00時，全年無休。(除公告之颱風、天然災害外)</div>
+                </div>
+                <div>
+                  <button class="Q" id="Q2">請問道士部的服務時間，每天都有輪值道士嗎？</button>
+                  <div class="A" id="A2">上午九時至下午四時，如果有信眾需要其他的時間作法事，也可以直接向道士詢問，除了大年初一道士祭改停止一天外，其餘時間都有當值道士為民眾服務。</div>
+                </div>
+                <div>
+                  <button class="Q" id="Q3">我想帶外國友人到城隍廟拜拜，請問有英語或是日語的簡介資料可供索取嗎?</button>
+                  <div class="A" id="A3">本廟除了備有英日語的說明資料外，廟內工作人員也能以英日語教導外國遊客拜月老，十分歡迎外國友人前來參觀。</div>
+              </div>
+                <div>
+                    <button class="Q" id="Q4">請問付款方式有哪些?</button>
+                    <div class="A" id="A4">我們目前提供線上刷卡、ATM轉帳、貨到付款、超商取貨付款，四種付款方式</div>
+                </div>
+                <div>
+                    <button class="Q" id="Q5">沒有在領取的期限內取貨該怎麼辦？</button>
+                    <div class="A" id="A5">  若您逾期未至門市取貨時，商品將會退回本公司，訂單亦將自動取消無法重新配送，如您仍需要該商品，請再次重新上網訂購。<br>
+                        提醒您，若有以下情況，將影響您未來下單的結帳方式：<br>
+                        若您有1次以上(含1次)未於通知期限內至指定門巿取貨，未來您將無法使用便利商店取貨付款服務，僅開放信用卡與匯款方式結帳。<br>
+                        貨到付款未取／拒收件達 1 次以上(含1次)，未來將無法使用貨到付款服務。<br><br>
+                        請您與我們共同珍惜寶貴的訂購資源及維護自身權益。
+                        </div>
+                </div>
+                <div>
+                    <button class="Q" id="Q6">如何聯絡賣家?</button>
+                    <div class="A" id="A6">可至商店最下方尋找網站聯絡資訊，或利用「聯絡我們」功能，提出您的需求唷～</div>
+                </div>
+            </div>
+
+            <div id="memberQ">
+                <h3>月老問題</h3>
+                <div>
+                    <button class="Q" id="Q7">父母能否為自己孩子到城隍廟求姻緣？</button>
+                    <div class="A" id="A7">可以。</div>
+                </div>
+                <div>
+                    <button class="Q" id="Q8">女性在月事期間能去拜月老嗎？</button>
+                    <div class="A" id="A8">可以的，本廟並無此禁忌。</div>
+                </div>
+                <div>
+                    <button class="Q" id="Q9">能幫兄弟姊妹求姻緣嗎？</button>
+                    <div class="A" id="A9">託家人代為祈求是可以的，但請注意! 委託朋友祈求是不行的。</div>
+                </div>
+                <div>
+                    <button class="Q" id="Q10">情侶是否能一起來城隍廟拜拜？</button>
+                    <div class="A" id="A10">可以。您可以與情人一齊來向月老祈求姻緣早成，至於準備供品則是每人一份，如果姻緣有成，答謝時可以情侶聯合答謝一份喜餅。</div>
+                </div>
+            </div>
+
+            <div id="service">
+                <h3>售後服務</h3>
+                <div>
+                    <button class="Q" id="Q11">收貨後與網站說明不符，或者為瑕疵品，怎麼辦?</button>
+                    <div class="A" id="A11">請保留交易之相關紀錄，並與我們聯繫，如仍無法排除交易糾紛，您可向行政院消費者保護會申訴：https://appeal.cpc.ey.gov.tw/WWW/Default.aspx</div>
+                </div>
+                
+                <div>
+                    <button class="Q" id="Q12">商品跟我想的不一樣？	</button>
+                    <div class="A" id="A12">因每個物品大小不一，以實際產品狀況為主，每樣產品皆為標準規格內出貨。產品展示圖僅供參考使用。</div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function(){
+              $("#Q1").click(function(){
+                $("#A1").slideToggle(300);
+              });
+            })
+
+            $(document).ready(function(){
+              $("#Q2").click(function(){
+                $("#A2").slideToggle(300);
+              });
+            })
+
+            $(document).ready(function(){
+              $("#Q3").click(function(){
+                $("#A3").slideToggle(300);
+              });
+            })
+
+            $(document).ready(function(){
+              $("#Q4").click(function(){
+                $("#A4").slideToggle(300);
+              });
+            })
+            $(document).ready(function(){
+              $("#Q5").click(function(){
+                $("#A5").slideToggle(300);
+              });
+            })
+            $(document).ready(function(){
+              $("#Q6").click(function(){
+                $("#A6").slideToggle(300);
+              });
+            })
+            $(document).ready(function(){
+              $("#Q7").click(function(){
+                $("#A7").slideToggle(300);
+              });
+            })
+            $(document).ready(function(){
+              $("#Q8").click(function(){
+                $("#A8").slideToggle(300);
+              });
+            })
+            $(document).ready(function(){
+              $("#Q9").click(function(){
+                $("#A9").slideToggle(300);
+              });
+            })
+            $(document).ready(function(){
+              $("#Q10").click(function(){
+                $("#A10").slideToggle(300);
+              });
+            })
+            $(document).ready(function(){
+              $("#Q11").click(function(){
+                $("#A11").slideToggle(300);
+              });
+            })
+            $(document).ready(function(){
+              $("#Q12").click(function(){
+                $("#A12").slideToggle(300);
+              });
+            })
+          </script>
+</body>
+</html>

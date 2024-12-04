@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>月老專區</title>
+    <link rel="stylesheet" href="temple2.css">
+    
+
+    <header>
+        <section>
+        <h1 style="  font-size: 65px; text-align: center; color:#8a0004 ; "><b>霞海城隍廟</b></h1>
+        </section>
+    </header>
+
+    <nav>
+        <a href="temple1.html">首頁</a>
+        <a href="temple5.html">VR探索遊戲</a>
+        <a href="temple2.html">月老專區</a>
+        <a href="temple3.html">商店專區</a>
+        <a href="temple4.html">會員中心</a>
+    </nav>
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+    <!-- 圖示 -->
+<span class="material-icons icon" style="font-size: 100px;" id="showDialog">
+    support_agent
+</span>
+
+<!-- 對話框 -->
+<div id="dialog" class="dialog-box" style="display: block;">
+    <span class="material-icons">mark_chat_unread</span>
+    <p>點擊頭像即將為你服務!</p>
+    <button class="close2btn" onclick="closeDialog()">關閉</button>
+</div>
+
+<!-- 聊天框 -->
+<div id="chatBox" class="chat-box" style="display: none;">
+    <div class="chat-header">
+        <span>客服中心</span>
+        <button id="closeChat" class="close3btn">✖️</button>
+    </div>
+    <div class="chat-content" id="chatContent">
+        <!-- 聊天訊息會顯示在這裡 -->
+    </div>
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="請輸入訊息...(可以隨便打點甚麼)" />
+        <button id="sendBtn">發送</button>
+    </div>
+</div>
+
+<script>
+    // 獲取元素
+    const showDialogBtn = document.getElementById("showDialog");
+    const dialogBox = document.getElementById("dialog");
+    const chatBox = document.getElementById("chatBox");
+    const closeChatBtn = document.getElementById("closeChat");
+    const sendBtn = document.getElementById("sendBtn");
+    const userInput = document.getElementById("userInput");
+    const chatContent = document.getElementById("chatContent");
+
+    // 當頁面加載後顯示對話框並定位
+    window.onload = function() {
+        positionDialog();  // 設置對話框位置
+    };
+
+    // 顯示對話框
+    function positionDialog() {
+        const iconRect = showDialogBtn.getBoundingClientRect();
+        const dialog = dialogBox;
+
+        dialog.style.display = 'block';  // 顯示對話框
+       
+
+        // 設定對話框的位置，使其顯示在圖示的右側並垂直居中
+        dialog.style.left = `${iconRect.left + iconRect.width + 10}px`;  // 讓對話框顯示在圖示的右邊
+        dialog.style.top = `${iconRect.top + (iconRect.height / 2) - (dialog.offsetHeight / 2)}px`;  // 讓對話框垂直居中於圖示
+    }
+
+    // 點擊客服圖像時顯示聊天框
+    showDialogBtn.addEventListener("click", () => {
+        chatBox.style.display = "flex";  // 顯示聊天框
+    });
+
+    // 點擊關閉聊天框按鈕時，隱藏聊天框
+    closeChatBtn.addEventListener("click", () => {
+        chatBox.style.display = "none";  // 隱藏聊天框
+    });
+
+    // 發送訊息
+    sendBtn.addEventListener("click", () => {
+        const message = userInput.value.trim();
+        if (message) {
+            // 顯示用戶訊息
+            const userMessage = document.createElement("div");
+            userMessage.classList.add("user-message");
+            userMessage.textContent = message;
+            chatContent.appendChild(userMessage);
+        
+            // 清空輸入框
+            userInput.value = "";
+
+            // 模擬客服回應
+            setTimeout(() => {
+                const botMessage = document.createElement("div");
+                botMessage.classList.add("bot-message");
+                botMessage.textContent = "客服：謝謝您的訊息，我們會盡快處理。";
+                chatContent.appendChild(botMessage);
+                chatContent.scrollTop = chatContent.scrollHeight;  // 自動滾動到底部
+            }, 1000);
+        }
+    });
+
+    // 關閉對話框
+    function closeDialog() {
+        dialogBox.style.display = 'none';
+    }
+
+</script>
+        
+    <div style="background-color: #8a0004; background-image: url(image/background.jpg);background-size: cover,auto ;background-position: center center;background-repeat: no-repeat;min-height: 100vh;display: flex; flex-direction: column;padding: 20px;">
+        <h2 style="color: white;  text-align: center;">月老專區</h2>
+        <h3 style="color:  white;  text-align: center;margin-bottom: 100px;" >傳說，月老的紅線並不僅僅是將兩個人牽引在一起，更是在無形中掌握著每段愛情的起伏與轉折。<br>那些來到霞海城隍廟的信徒，在這裡默默奉上香火，心中祈願著命中注定的那一個人。<br>有人說，月老的紅線並非顯而易見，而是存在於每個人的命運軌跡中，只有心中真誠，才能感受到那股牽引的力量。<br>
+             每年，無數人帶著不同的故事與願望，踏入這座神秘的廟宇，仿佛時間在這裡凝固，過去、現在、未來交織在一起。<br>
+             月老的神像，靜靜守護著每一對冥冥之中的有情人，並輕輕拉動那條紅線，引領他們走向命中註定的彼岸。<br>
+             有人說，霞海城隍廟的月老特別神秘，因為每當信徒真心祈求，他的紅線便會悄無聲息地將兩顆心緊緊相連，而這一切，似乎早已注定，無人能改。
+        </h3>
+        <div class="button-container">
+            <button id="openModal2"><h2 style="color: rgb(251, 246, 246);">求籤詩</h2></button>
+        </div>
+        
+        
+
+        <!-- 第二個彈出小視窗 -->
+        <div id="modal2" class="modal2">
+            <div class="modal-content">
+                <span class="close-btn" id="closeModal2">&times;</span>
+                <h2>準備好見月老爺爺了嗎?</h2>
+                <a href="temple2-2.html"><p><button style="color: white">前往求籤詩參拜</button></p></a>     
+            </div>
+        </div> 
+
+        <script src="script.js"></script>
+    </div>
+</body>
+<footer>
+    <div>
+        <p>聯絡我們<br>
+            電話:(02)2558-0346<br>
+            地址:台北市大同區迪化街一段61號<br>
+            服務時間: 每日早上07:00分至晚上07:00時，全年無休。(除公告之颱風、天然災害外)
+           <br>
+
+            copyright@ 2024 月來越奇廟
+        </p> 
+    </div>
+</footer>
+</html>
